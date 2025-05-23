@@ -4,12 +4,11 @@
 
 cmake_minimum_required(VERSION 3.20)
 
-project(posix_example)
-
+project(app LANGUAGES C)
 set(CMAKE_BUILD_TYPE Debug)
 
+add_executable(libmpix_example_posix main.c)
+
 add_subdirectory($ENV{LIBMPIX}/ports/posix libmpix)
-
-add_executable(posix_example main.c)
-
-target_link_libraries(posix_example PUBLIC libmpix)
+target_link_libraries(libmpix_example_posix PUBLIC libmpix)
+libmpix_init(libmpix_example_posix)
