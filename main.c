@@ -129,19 +129,19 @@ static int app_save_bmp(const char *filename, uint8_t *rgb_data, uint16_t width,
 int main(void)
 {
 	struct mpix_image img;
+	struct mpix_format fmt = { .width = APP_WIDTH, .height = APP_HEIGHT, .fourcc = APP_FOURCC };
 
 	if (app_read_test_data() != 0) {
 		return 1;
 	}
 
-	mpix_image_from_buf(&img, buf_in, sizeof(buf_in), APP_WIDTH, APP_HEIGHT, APP_FOURCC);
+	mpix_image_from_buf(&img, buf_in, sizeof(buf_in), &fmt);
 	mpix_image_debayer(&img, 2);
 	mpix_image_convert(&img, MPIX_FMT_RGB24);
 	mpix_image_to_buf(&img, buf_out, sizeof(buf_out));
 
-	if (img.err != 0) {
-		printf("Oops an error occured: %s!\n", strerror(-img.err));
-		return img.err;
+	if (img.size == 0) {
+		return 1;
 	}
 
 	// mpix_image_print_truecolor(&img);

@@ -9,6 +9,6 @@ set(CMAKE_BUILD_TYPE Debug)
 
 add_executable(libmpix_example_posix main.c)
 
-add_subdirectory($ENV{LIBMPIX}/ports/posix libmpix)
+add_subdirectory(../libmpix/ports/posix libmpix)
 target_link_libraries(libmpix_example_posix PUBLIC libmpix)
 libmpix_init(libmpix_example_posix)
