@@ -7,7 +7,7 @@
 
 #include <mpix/image.h>
 
-#define APP_WIDTH 1600
+#define APP_WIDTH (1600 * 2)
 #define APP_HEIGHT 1296
 #define APP_FOURCC MPIX_FMT_SBGGR8
 
